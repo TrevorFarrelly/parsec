@@ -1,6 +1,7 @@
 import { BrowserWindow, app } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
+import { Option } from './options'
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
   app.quit();
@@ -9,14 +10,25 @@ if (started) {
 let win: BrowserWindow;
 
 function createWindow() {
+  let { state, monitor } = Option.MonitorWindowState('main');
   win = new BrowserWindow({
-    x: 800,
-    y: 600,
+    width: state.width,
+    height: state.height,
+    x: state.x,
+    y: state.y,
     show: false, // Start hidden to prevent flicker
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
+
+  monitor(win);
+
+  if (state.isFullscreen) {
+    win.setFullScreen(true);
+  } else if (state.isMaximized) {
+    win.maximize();
+  }
 
   // load index.html
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
