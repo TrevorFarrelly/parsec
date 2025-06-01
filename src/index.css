@@ -1,0 +1,17 @@
+html {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  margin: auto;
+  position: relative;
+  background: linear-gradient(160gdeg, #08040c 0%, #1e0e2f 100%);
+}
+
+/*
+main: #0D0613 to #190C27
+text: #E8E0BA
+blue accents: #5E96C9, #376FA4
+*/
