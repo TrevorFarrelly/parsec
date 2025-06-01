@@ -27,5 +27,18 @@
  */
 
 import './index.css';
+import { NavBar, NavButton } from './nav/navbar';
 
-console.log('👋 This message is being logged by "renderer.ts", included via Vite');
+
+let navbar = new NavBar();
+for (let i = 0; i < 5; i++) {
+    navbar.addChild(new NavButton());
+}
+
+document.body.appendChild(navbar.render(document));
+
+
+// let regionBar = document.createElement('div');
+// regionBar.className = 'region_bar';
+// document.body.appendChild(regionBar);
+//
